@@ -1,1 +1,1 @@
-# docs for bluscript hehe
+# docs for lunar hehe
