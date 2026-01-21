@@ -7,20 +7,24 @@
 
 typedef enum {
     TOK_EOF = 0,
+
     // idents + literals
     TOK_IDENT,
     TOK_INT,
     TOK_STRING,
-    // keywrds
-    TOK_KW_FN,
+
+    // keywords
+    TOK_KW_FUNCT,   // funct
+    TOK_KW_RET,     // ret 
     TOK_KW_LET,
     TOK_KW_MUT,
     TOK_KW_IF,
     TOK_KW_ELSE,
     TOK_KW_WHILE,
-    TOK_KW_RETURN,
+    TOK_KW_RETURN,  // return (statement)
     TOK_KW_TRUE,
     TOK_KW_FALSE,
+
     // operators & punctuation
     TOK_LPAREN,
     TOK_RPAREN,
@@ -37,22 +41,21 @@ typedef enum {
     TOK_DOT,
 
     TOK_PLUS,
-    TOK_MIUNS,
+    TOK_MINUS,
     TOK_STAR,
     TOK_SLASH,
 
     TOK_EQ,
-    TOK_EQEQ, // ==
-    TOK_UNEQ, // !=
-    TOK_EXCL, // !
-    TOK_LT, // <
-    TOK_LTEQ, // <=
-    TOK_GT, // >
-    TOK_GTEQ, // >=
-    TOK_ARROW, // ->
-    TOK_MINUS,
+    TOK_EQEQ,   // ==
+    TOK_UNEQ,   // !=
+    TOK_EXCL,   // !
+    TOK_LT,     // <
+    TOK_LTEQ,   // <=
+    TOK_GT,     // >
+    TOK_GTEQ,   // >=
 
 } TokenKind;
+
 
 
 typedef struct {

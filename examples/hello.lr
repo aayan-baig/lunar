@@ -1,1 +1,3 @@
-fn main() -> int {return 0;}
+funct main(argc: int, argv: list) ret int {
+    return 0;
+}
