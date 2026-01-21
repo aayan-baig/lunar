@@ -17,7 +17,7 @@ typedef enum {
     TOK_KW_MUT,
     TOK_KW_IF,
     TOK_KW_ELSE,
-    TOK_KW,WHILE,
+    TOK_KW_WHILE,
     TOK_KW_RETURN,
     TOK_KW_TRUE,
     TOK_KW_FALSE,
@@ -50,6 +50,7 @@ typedef enum {
     TOK_GT, // >
     TOK_GTEQ, // >=
     TOK_ARROW, // ->
+    TOK_MINUS,
 
 } TokenKind;
 
