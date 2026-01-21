@@ -80,6 +80,7 @@ static void skip_whitespaces_and_comments(Lexer *lx){
 }
 
 static Token make_token(Lexer *lx, TokenKind k, Span sp, const char *start, size_t length){
+    (void)lx;
     Token t;
     t.kind = k;
     t.span = sp;
@@ -105,35 +106,37 @@ static Token lex_number(Lexer *lx, Span sp, const char *start){
 }
 
 static int is_ident_start(char c){
-    return (c == "_") || isalpha((unsigned char)c);
+    return (c == '_') || isalpha((unsigned char)c);
 }
 
 static int is_ident_cont(char c){
-    return (c=="_") || isalnum((unsigned char)c);
+    return (c=='_') || isalnum((unsigned char)c);
 }
 
-static TokenKind keyword_or_indent(const char *s, size_t n){
-    // for keyword detection
-    // warning this function may be MASSIVE!
+static TokenKind keyword_or_ident(const char *s, size_t n){
+    #define KW(name, kind) \
+        if (n == sizeof(name)-1 && memcmp(s, name, sizeof(name)-1) == 0) return kind
 
-    KW('fn', TOK_KW_FN);
-    KW('let',TOK_KW_LET);
-    KW('mut',TOK_KW_MUT);
-    KW('if',TOK_KW_IF);
-    KW('else',TOK_KW_ELSE);
-    KW('while',TOK_KW_WHILE);
-    KW('ret', TOK_KW_RETURN);
-    KW('true', TOK_KW_TRUE);
-    KW('false', TOK_KW_FALSE);
+    KW("fn", TOK_KW_FN);
+    KW("let", TOK_KW_LET);
+    KW("mut", TOK_KW_MUT);
+    KW("if", TOK_KW_IF);
+    KW("else", TOK_KW_ELSE);
+    KW("while", TOK_KW_WHILE);
+    KW("ret", TOK_KW_RETURN);
+    KW("true", TOK_KW_TRUE);
+    KW("false", TOK_KW_FALSE);
+
     #undef KW
     return TOK_IDENT;
 }
+
 
 static Token lex_ident_or_kw(Lexer *lx, Span sp, const char *start){
     size_t begin = lx->i;
     while(is_ident_cont(peek(lx))) advance(lx);
     size_t n =lx->i - begin;
-    TokenKind k = keyword_or_indent(start, n);
+    TokenKind k = keyword_or_ident(start, n);
     return make_token(lx, k, sp, start, n);
 }
 
@@ -142,7 +145,7 @@ static Token lex_string(Lexer *lx, Span sp){
     const char *start = &lx->src[lx->i];
     size_t begin = lx->i;
 
-    while(peek(lx)!='\0' && peek2(lx) != '"') {
+    while(peek(lx)!='\0' && peek(lx) != '"') {
         char c = advance(lx);
         if (c == '\\') {
             // consume one escaped char if present
@@ -190,7 +193,7 @@ Token lexer_next(Lexer *lx) {
         // continue consume
         while (is_ident_cont(peek(lx))) advance(lx);
         size_t n = lx->i - begin;
-        TokenKind k = keyword_or_indent(&lx->src[begin], n);
+        TokenKind k = keyword_or_ident(&lx->src[begin], n);
         return make_token(lx, k, sp, &lx->src[begin], n);
     }
 

@@ -1,5 +1,5 @@
 CC ?= cc
-CFLAGS ?= -std=c11 -Wall -Wextra -Wpendatic -O2
+CFLAGS ?= -std=c11 -Wall -Wextra -Wpedantic -O2
 
 BIN = lunar
 SRC = \
