@@ -1,6 +1,7 @@
 # Thanks for vising the Lunar repository! <br>
 Version: 0
-**As of now, this README will only contain the syntax of the language. I intend to build upon this further more, and very soon.**
+**As of now, this README will only contain the syntax of the language. I intend to build upon this further more, and very soon.**<br>
+**SOME CONSTRUCTS MAY BE PARSED BUT NOT YET EXECUTABLE AT SUCH AN EARLY STAGE. YOU HAVE BEEN WARNED!**
 <hr>
 
 ## Source Files:
@@ -113,6 +114,6 @@ int func main(<args (optional)>):
     return 0;
 ```
 
-# All statements must end with a semicolon.
+### All statements must end with a semicolon.
 
 End of file.
