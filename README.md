@@ -1,6 +1,6 @@
 # Thanks for vising the Lunar repository! <br>
 Version: 0
-**As of now, this README will only contain the syntax of the language. I intend to build upon this further more, and very soon.**<br>
+**As of now, this README will only contain the syntax of the language. I intend to build upon this further more, and very soon.**<br><br>
 **SOME CONSTRUCTS MAY BE PARSED BUT NOT YET EXECUTABLE AT SUCH AN EARLY STAGE. YOU HAVE BEEN WARNED!**
 <hr>
 
